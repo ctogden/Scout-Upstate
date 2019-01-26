@@ -1,0 +1,17 @@
+{
+  "name": "scout-upstate-api",
+  "version": "1.0.0",
+  "description": "Caches and transforms the Airtable API results to get around rate-limiting",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "micro"
+  },
+  "author": "Christopher Ogden",
+  "dependencies": {
+    "airtable": "^0.5.6",
+    "micro": "^9.3.3",
+    "micro-cors": "^0.1.0",
+    "node-fetch": "^1.7.1"
+  }
+}

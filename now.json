@@ -1,0 +1,19 @@
+{
+    "version": 2,
+    "name": "scout-upstate",
+    "alias": "scout-upstate.now.sh",
+    "builds": [
+        { "src": "www/package.json", "use": "@now/next" },
+        { "src": "api/index.js", "use": "@now/node" },
+        { "src": "blog/package.json", "use": "@now/static-build", "config": { "distDir": "public" } }
+    ],
+    "routes": [
+        { "src": "/api/(.*)", "dest": "/api/$1" },
+        { "src": "/journal/index", "dest": "/blog/html.js" },
+        { "src": "/journal/(.*)", "dest": "/blog/$1" },
+        { "src": "/(.*)", "dest": "/www/$1" }
+    ],
+    "env": {
+        "AIRTABLE_API_KEY": "@airtable_api_key"
+    }
+}
