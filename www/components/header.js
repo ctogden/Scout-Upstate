@@ -39,7 +39,7 @@ class Header extends React.Component {
             property="og:description"
             content="Scout Upstate is your guide to Upstate New York, particularly the Catskills and the Hudson Valley region. Browse our directory of attractions for  a curated list of places to see and check out our blog & calendar to stay on top of local events."
           />
-          <meta charset="utf-8" />
+          <meta charSet="utf-8" />
           <link
             rel="apple-touch-icon"
             sizes="180x180"
