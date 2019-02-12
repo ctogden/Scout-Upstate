@@ -3,7 +3,7 @@ title: Film Festivals in the Catskills
 date: "2018-09-27T13:12:00.000Z"
 ---
 
-![](film_festival_ticket.webp)
+![](film_festival_ticket.jpg)
 
 A new film festival is coming to the Catskills this fall, October 19th through 21st. From their [website](https://www.gwciff.com/):
 
