@@ -11,6 +11,7 @@
         { "src": "/api/(.*)", "dest": "/api/$1" },
         { "src": "/journal/index", "dest": "/blog/html.js" },
         { "src": "/journal/(.*)", "dest": "/blog/$1" },
+        { "src": "/guide/attraction/(?<slug>[^/]+)$", "dest": "/www/guide/attraction?slug=$slug" },
         { "src": "/(.*)", "dest": "/www/$1" }
     ],
     "env": {
