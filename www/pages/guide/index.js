@@ -32,7 +32,7 @@ export default class extends React.Component {
           </Link>
           <div className="callout feature-1">
             <div className="newsletter-signup">
-              <h4>Newsletter</h4>
+              <label htmlFor="newsletter-signup-email-input">Newsletter</label>
               <h5>The best of upstate, weekly</h5>
               <form
                 action="https://scoutupstate.us12.list-manage.com/subscribe/post"
@@ -47,8 +47,8 @@ export default class extends React.Component {
                 <input type="hidden" name="id" value="f8ce6b453e" />
                 <input
                   type="email"
+                  id="newsleter-signup-email-input"
                   className="email-input"
-                  label="Newsletter signup"
                   value={this.state.emailValue}
                   onChange={e => {
                     this.setState({ emailValue: e.target.value });
@@ -196,13 +196,14 @@ export default class extends React.Component {
             width: 80%;
             margin: 20px auto;
           }
-          .newsletter-signup h4, h5 {
+          .newsletter-signup label, h5 {
             font-size: 2em;
             color: white;
             margin-top: 25px;
             margin-bottom: 10px;
           }
-          .newsletter-signup h4 {
+          .newsletter-signup label {
+            display: block;
             margin-top: 45px;
           }
           .email-input {
