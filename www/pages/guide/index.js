@@ -48,6 +48,7 @@ export default class extends React.Component {
                 <input
                   type="email"
                   className="email-input"
+                  label="Newsletter signup"
                   value={this.state.emailValue}
                   onChange={e => {
                     this.setState({ emailValue: e.target.value });

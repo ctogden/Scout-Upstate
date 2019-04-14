@@ -1,5 +1,6 @@
 {
     "name": "Scout Upstate",
+    "short_name": "Scout",
     "icons": [
         {
             "src": "/static/favicon/android-chrome-192x192.png",

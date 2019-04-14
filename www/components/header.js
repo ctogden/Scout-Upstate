@@ -19,6 +19,7 @@ class Header extends React.Component {
     return (
       <header className="root">
         <Head>
+          <meta charSet="utf-8" />
           <title>Scout Upstate - {this.props.title}</title>
           <link
             href="https://fonts.googleapis.com/css?family=Roboto"
@@ -39,10 +40,8 @@ class Header extends React.Component {
             property="og:description"
             content="Scout Upstate is your guide to Upstate New York, particularly the Catskills and the Hudson Valley region. Browse our directory of attractions for  a curated list of places to see and check out our blog & calendar to stay on top of local events."
           />
-          <meta charSet="utf-8" />
           <link
             rel="apple-touch-icon"
-            sizes="180x180"
             href="/static/favicon/apple-touch-icon.png"
           />
           <link
@@ -57,7 +56,7 @@ class Header extends React.Component {
             sizes="16x16"
             href="/static/favicon/favicon-16x16.png"
           />
-          <link rel="manifest" href="/static/favicon/manifest.json" />
+          <link rel="manifest" href="/static/favicon/manifest.webmanifest" />
           <link
             rel="mask-icon"
             href="/static/favicon/safari-pinned-tab.svg"

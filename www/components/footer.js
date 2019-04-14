@@ -5,7 +5,7 @@ export default () => (
     <p className="love">
       Made with
       {" "}
-      <img src="/static/images/heart-icon.png" height="14" width="14" />
+      <img src="/static/images/heart-icon.png" alt="Heart icon" height="14" width="14" />
       {" "}
       in Walton, NY
     </p>
