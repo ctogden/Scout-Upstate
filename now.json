@@ -3,12 +3,12 @@
     "name": "scout-upstate",
     "alias": "scout-upstate.now.sh",
     "builds": [
+        { "src": "api/src/places/index.rs", "use": "@now/rust" },
         { "src": "www/package.json", "use": "@now/next" },
-        { "src": "api/index.js", "use": "@now/node" },
         { "src": "blog/package.json", "use": "@now/static-build", "config": { "distDir": "public" } }
     ],
     "routes": [
-        { "src": "/api/(.*)", "dest": "/api/$1" },
+        { "src": "/api/(.*)", "dest": "/api/src/$1" },
         { "src": "/journal/index", "dest": "/blog/html.js" },
         { "src": "/journal/(.*)", "dest": "/blog/$1" },
         { "src": "/guide/attraction/(?<slug>[^/]+)$", "dest": "/www/guide/attraction?slug=$slug" },

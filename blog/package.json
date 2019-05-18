@@ -38,6 +38,7 @@
   "scripts": {
     "dev": "gatsby develop",
     "now-build": "npm run build",
+    "now-dev": "gatsby develop -p $PORT",
     "lint": "./node_modules/.bin/eslint --ext .js,.jsx --ignore-pattern public .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "prettier --trailing-comma es5 --no-semi --single-quote --write 'src/**/*.js' 'src/**/*.md'",

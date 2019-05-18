@@ -19,7 +19,7 @@ export default class extends React.Component {
   }
 
   static async getInitialProps({ query: { slug } }) {
-    const res = await fetch("https://api.scoutupstate.com/places?slug=" + slug);
+    const res = await fetch("https://scoutupstate.com/api/places?slug=" + slug);
 
     if (typeof slug === "undefined") {
       res.statusCode = 404;
@@ -32,7 +32,7 @@ export default class extends React.Component {
       return {};
     }
 
-    return data[0].fields;
+    return data.fields;
   }
 
   componentDidMount() {
