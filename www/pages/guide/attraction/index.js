@@ -10,7 +10,6 @@ import "isomorphic-fetch";
 var Carousel = require("react-responsive-carousel").Carousel;
 var _ = require("lodash/core");
 
-let mapzen, map, marker;
 
 export default class extends React.Component {
   constructor() {
@@ -40,7 +39,7 @@ export default class extends React.Component {
       mapboxgl.accessToken =
         "pk.eyJ1IjoiY3RvZ2RlbiIsImEiOiJjamMxMjA0ZXQwMWozMzNvOTd4a3B0aTZjIn0.KzJ79r9nBEqSGYUGsMQttg";
 
-      map = new mapboxgl.Map({
+      let map = new mapboxgl.Map({
         // container id specified in the HTML
         container: "map",
         // style URL
