@@ -39,6 +39,7 @@ fn handler(request: Request<()>) -> http::Result<Response<String>> {
         .status(StatusCode::OK)
         .header(header::CONTENT_TYPE, "application/json")
         .header(header::CACHE_CONTROL, "s-maxage=20, stale-while-revalidate")
+        .header(header::ACCESS_CONTROL_ALLOW_HEADERS, "*")
         .body(json_results)
         .expect("Failed to render response.");
     
