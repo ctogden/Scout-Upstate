@@ -3,7 +3,7 @@
     "name": "scout-upstate",
     "alias": "scout-upstate.now.sh",
     "builds": [
-        { "src": "api/src/places/index.rs", "use": "@now/rust" },
+        { "src": "api/src/places/index.rs", "use": "@now/rust", "config": { "rust": "1.33" } },
         { "src": "www/package.json", "use": "@now/next" },
         { "src": "blog/package.json", "use": "@now/static-build", "config": { "distDir": "public" } }
     ],
