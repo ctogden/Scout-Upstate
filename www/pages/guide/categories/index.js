@@ -191,7 +191,6 @@ export default class extends React.Component {
                   <div className="place" key={place.id}>
                     <h3>
                       <Link
-                        prefetch
                         href={`/guide/attraction?slug=${place.fields.Slug}`}
                         as={`/guide/attraction/${place.fields.Slug}`}
                       >

@@ -3,7 +3,7 @@
     "name": "scout-upstate",
     "alias": "scout-upstate.now.sh",
     "builds": [
-        { "src": "api/src/places/index.rs", "use": "@now/rust", "config": { "rust": "1.33" } },
+        { "src": "api/src/places/index.rs", "use": "now-rust", "config": { "rust": "1.33" } },
         { "src": "www/package.json", "use": "@now/next" },
         { "src": "blog/package.json", "use": "@now/static-build", "config": { "distDir": "public" } }
     ],
@@ -15,6 +15,8 @@
         { "src": "/(.*)", "dest": "/www/$1" }
     ],
     "env": {
-        "AIRTABLE_API_KEY": "@airtable_api_key"
+        "AIRTABLE_API_KEY": "@airtable_api_key",
+        "SENTRY_DSN": "@sentry_dsn",
+        "RUST_BACKTRACE": "@rust_backtrace"
     }
 }
