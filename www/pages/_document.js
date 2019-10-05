@@ -2,6 +2,7 @@
 // Event handlers like onClick can't be added to this file
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import * as Sentry from '@sentry/browser';
+import { GA_TRACKING_ID } from '../lib/gtag'
 
 process.on('unhandledRejection', (err) => {
     Sentry.captureException(err);
@@ -21,6 +22,21 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
+          {/* Global Site Tag (gtag.js) - Google Analytics */}
+          <script
+            async
+            src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+          />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', '${GA_TRACKING_ID}');
+          `
+            }}
+          />
           <style>{`body { margin: 0 } /* custom! */`}</style>
         </Head>
         <body className="custom_class">
