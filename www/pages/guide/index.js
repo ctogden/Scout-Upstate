@@ -19,7 +19,7 @@ export default class extends React.Component {
       <div className="wrapper">
         <Header title="Guide">Guide</Header>
         <div className="content">
-          <Link prefetch href="/guide/categories">
+          <Link href="/guide/categories">
             <div className="card categories">
               <h3>Browse by category</h3>
               <div className="description">
@@ -63,7 +63,7 @@ export default class extends React.Component {
               </form>
             </div>
           </div>
-          <Link prefetch href="/guide/map">
+          <Link href="/guide/map">
             <div className="card map">
               <h3>View on map</h3>
               <div className="description">

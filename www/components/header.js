@@ -79,12 +79,12 @@ class Header extends React.Component {
           />
           <ul id="nav-menu">
             <li>
-              <Link prefetch href="/guide">
+              <Link href="/guide">
                 <a>Guide</a>
               </Link>
             </li>
             <li>
-              <Link prefetch href="/calendar">
+              <Link href="/calendar">
                 <a>Calendar</a>
               </Link>
             </li>
@@ -94,7 +94,7 @@ class Header extends React.Component {
 
             {/* TODO: Add search bar on right, before 'About' once search functionality implemented */}
             <li className="right-nav">
-              <Link prefetch href="/about">
+              <Link href="/about">
                 <a>About</a>
               </Link>
             </li>

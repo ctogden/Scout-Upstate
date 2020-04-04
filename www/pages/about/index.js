@@ -48,7 +48,7 @@ export default () => (
           <div className="snippet-label">contact</div>
         </div>
         <div className="snippet-body">
-          Send us an <a href="mailto:hello@scoutupstate.com">email</a> or reach
+          Send us an <a href="mailto:ogdenchris+scoutupstate@gmail.com">email</a> or reach
           out on <a href="https://twitter.com/scout_upstate">Twitter</a>
           .
         </div>
