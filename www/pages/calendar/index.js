@@ -1,6 +1,6 @@
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import Link from "next/link";
+import Header from '../../components/header'
+import Footer from '../../components/footer'
+import Link from 'next/link'
 
 export default class extends React.Component {
   render() {
@@ -10,13 +10,13 @@ export default class extends React.Component {
         <div className="content">
           <div className="calendar-note">
             We are working on a better events page, but in the meantime check
-            out our latest{" "}
+            out our latest{' '}
             <a href="https://us12.campaign-archive.com/home/?u=276674ceb2a98e9d6dd11dbd5&id=f8ce6b453e">
               newsletter
-            </a>{" "}
+            </a>{' '}
             for a curated selection of events across upstate New York. And feel
-            free to email us at{" "}
-            <a href="mailto:hello@scoutupstate.com">hello@scoutupstate.com</a>{" "}
+            free to email us at{' '}
+            <a href="mailto:hello@scoutupstate.com">hello@scoutupstate.com</a>{' '}
             to suggest an event.
           </div>
         </div>
@@ -34,6 +34,6 @@ export default class extends React.Component {
           }
         `}</style>
       </div>
-    );
+    )
   }
 }

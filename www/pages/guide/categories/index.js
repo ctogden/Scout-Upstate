@@ -1,119 +1,119 @@
-import React from "react";
-import Header from "../../../components/header";
-import Footer from "../../../components/footer";
-import ReactMarkdown from "react-markdown";
-import Link from "next/link";
-import "isomorphic-fetch";
+import React from 'react'
+import Header from '../../../components/header'
+import Footer from '../../../components/footer'
+import ReactMarkdown from 'react-markdown'
+import Link from 'next/link'
+import 'isomorphic-fetch'
 
-var _ = require("lodash");
+var _ = require('lodash')
 
 export default class extends React.Component {
   static async getInitialProps() {
-    const res = await fetch("https://scoutupstate.com/api/places");
-    const data = await res.json();
-    const rows = _.filter(data, function(e) {
+    const res = await fetch('https://scoutupstate.com/api/places')
+    const data = await res.json()
+    const rows = _.filter(data, function (e) {
       return (
         e.fields.Ready === true &&
         (e.fields.OpenToPublic === true ||
-          _.includes(e.fields.Category, "Lodging"))
-      );
-    });
+          _.includes(e.fields.Category, 'Lodging'))
+      )
+    })
 
-    return { rows };
+    return { rows }
   }
 
   constructor(props) {
-    super(props);
-    this.state = { categoryFilters: [], majorCategoryFilters: [] };
+    super(props)
+    this.state = { categoryFilters: [], majorCategoryFilters: [] }
   }
 
   toggleCategoryFilter(filter, event) {
-    var categories = this.state.categoryFilters.slice();
+    var categories = this.state.categoryFilters.slice()
 
     if (!_.includes(categories, filter)) {
-      categories.push(filter);
-      event.currentTarget.style.backgroundColor = "#e4d18c";
+      categories.push(filter)
+      event.currentTarget.style.backgroundColor = '#e4d18c'
     } else {
-      _.pull(categories, filter);
-      event.currentTarget.style.backgroundColor = "#f7f1dc";
+      _.pull(categories, filter)
+      event.currentTarget.style.backgroundColor = '#f7f1dc'
     }
 
-    this.setState({ categoryFilters: categories });
+    this.setState({ categoryFilters: categories })
   }
 
   toggleMajorCategoryFilter(filter, event) {
-    var majorCategories = this.state.majorCategoryFilters.slice();
+    var majorCategories = this.state.majorCategoryFilters.slice()
 
     if (!_.includes(majorCategories, filter)) {
-      majorCategories.push(filter);
-      event.currentTarget.style.backgroundColor = "#e4d18c";
+      majorCategories.push(filter)
+      event.currentTarget.style.backgroundColor = '#e4d18c'
     } else {
-      _.pull(majorCategories, filter);
-      event.currentTarget.style.backgroundColor = "#f7f1dc";
+      _.pull(majorCategories, filter)
+      event.currentTarget.style.backgroundColor = '#f7f1dc'
     }
 
-    this.setState({ majorCategoryFilters: majorCategories });
+    this.setState({ majorCategoryFilters: majorCategories })
   }
 
   render() {
     const categories = [
-      "Airbnbs",
-      "Antiques",
-      "Art",
-      "Bakery",
-      "Barbecue",
-      "Bars/Pubs",
-      "Berry Picking",
-      "Biking",
-      "Books",
-      "Breweries",
-      "Burgers",
-      "Cafes",
-      "Camping",
-      "Catering",
-      "Caverns",
-      "Cheeses",
-      "Christmas Trees",
-      "Climbing",
-      "Diners",
-      "Distilleries",
-      "Drive-in Theatres",
-      "Farms",
-      "Farm Stands",
-      "General Stores",
-      "Golf",
-      "Historical Sites",
-      "Horseback Riding",
-      "Ice Cream",
-      "Kids",
-      "Lodging",
-      "Maple Syrup",
-      "Museums",
-      "Music",
-      "Orchards",
-      "Performing Arts",
-      "Restaurants",
-      "River Sports",
-      "Roadside",
-      "Seasonal",
-      "Skiing",
-      "Smokehouses",
-      "Stores",
-      "Summer Camps",
-      "Swimming",
-      "Theatres",
-      "Vegan",
-      "Water Sports",
-      "Wedding Venues",
-      "Wineries"
-    ];
+      'Airbnbs',
+      'Antiques',
+      'Art',
+      'Bakery',
+      'Barbecue',
+      'Bars/Pubs',
+      'Berry Picking',
+      'Biking',
+      'Books',
+      'Breweries',
+      'Burgers',
+      'Cafes',
+      'Camping',
+      'Catering',
+      'Caverns',
+      'Cheeses',
+      'Christmas Trees',
+      'Climbing',
+      'Diners',
+      'Distilleries',
+      'Drive-in Theatres',
+      'Farms',
+      'Farm Stands',
+      'General Stores',
+      'Golf',
+      'Historical Sites',
+      'Horseback Riding',
+      'Ice Cream',
+      'Kids',
+      'Lodging',
+      'Maple Syrup',
+      'Museums',
+      'Music',
+      'Orchards',
+      'Performing Arts',
+      'Restaurants',
+      'River Sports',
+      'Roadside',
+      'Seasonal',
+      'Skiing',
+      'Smokehouses',
+      'Stores',
+      'Summer Camps',
+      'Swimming',
+      'Theatres',
+      'Vegan',
+      'Water Sports',
+      'Wedding Venues',
+      'Wineries',
+    ]
 
     const majorCategories = [
-      "Outdoor Activities",
-      "Indoor Activities",
-      "Places to Eat",
-      "Places to Stay"
-    ];
+      'Outdoor Activities',
+      'Indoor Activities',
+      'Places to Eat',
+      'Places to Stay',
+    ]
 
     return (
       <div className="wrapper">
@@ -122,13 +122,13 @@ export default class extends React.Component {
           <div className="category-filters">
             <h3>Filter by category:</h3>
             <div className="major-categories-grid">
-              {" "}
+              {' '}
               {/* TODO: refactor major category toggle as a component */}
               <div
                 className="major-category-toggle"
                 onClick={this.toggleMajorCategoryFilter.bind(
                   this,
-                  "Outdoor Activities"
+                  'Outdoor Activities'
                 )}
               >
                 <h1>Outdoor Activities</h1>
@@ -137,7 +137,7 @@ export default class extends React.Component {
                 className="major-category-toggle"
                 onClick={this.toggleMajorCategoryFilter.bind(
                   this,
-                  "Indoor Activities"
+                  'Indoor Activities'
                 )}
               >
                 <h1>Indoor Activities</h1>
@@ -146,7 +146,7 @@ export default class extends React.Component {
                 className="major-category-toggle"
                 onClick={this.toggleMajorCategoryFilter.bind(
                   this,
-                  "Places to Eat"
+                  'Places to Eat'
                 )}
               >
                 <h1>Places to Eat</h1>
@@ -155,16 +155,16 @@ export default class extends React.Component {
                 className="major-category-toggle"
                 onClick={this.toggleMajorCategoryFilter.bind(
                   this,
-                  "Places to Stay"
+                  'Places to Stay'
                 )}
               >
                 <h1>Places to Stay</h1>
               </div>
             </div>
             <div className="tag-filters">
-              <h3>Filter by tag:</h3>{" "}
+              <h3>Filter by tag:</h3>{' '}
               {/* TODO: find a cleaner way to add tags, displaying all tags is starting to take up too much screen space. In the meantime, let's hide on smaller screens */}
-              {categories.map(category => (
+              {categories.map((category) => (
                 <button
                   className="filter-button"
                   onClick={this.toggleCategoryFilter.bind(this, category)}
@@ -176,30 +176,29 @@ export default class extends React.Component {
             </div>
           </div>
           <div className="attractions">
-            {this.props.rows.map(
-              place =>
-                (this.state.majorCategoryFilters.length === 0 ||
-                  _.intersection(
-                    this.state.majorCategoryFilters,
-                    place.fields.Category
-                  ).length > 0) &&
-                (this.state.categoryFilters.length === 0 ||
-                  _.intersection(
-                    this.state.categoryFilters,
-                    place.fields.Category
-                  ).length > 0) ? (
-                  <div className="place" key={place.id}>
-                    <h3>
-                      <Link
-                        href={`/guide/attraction?slug=${place.fields.Slug}`}
-                        as={`/guide/attraction/${place.fields.Slug}`}
-                      >
-                        <a>{place.fields.Name}</a>
-                      </Link>
-                    </h3>
-                    <ReactMarkdown source={place.fields.Description} />
-                  </div>
-                ) : null
+            {this.props.rows.map((place) =>
+              (this.state.majorCategoryFilters.length === 0 ||
+                _.intersection(
+                  this.state.majorCategoryFilters,
+                  place.fields.Category
+                ).length > 0) &&
+              (this.state.categoryFilters.length === 0 ||
+                _.intersection(
+                  this.state.categoryFilters,
+                  place.fields.Category
+                ).length > 0) ? (
+                <div className="place" key={place.id}>
+                  <h3>
+                    <Link
+                      href={`/guide/attraction?slug=${place.fields.Slug}`}
+                      as={`/guide/attraction/${place.fields.Slug}`}
+                    >
+                      <a>{place.fields.Name}</a>
+                    </Link>
+                  </h3>
+                  <ReactMarkdown source={place.fields.Description} />
+                </div>
+              ) : null
             )}
           </div>
         </div>
@@ -328,6 +327,6 @@ export default class extends React.Component {
           }
         `}</style>
       </div>
-    );
+    )
   }
 }

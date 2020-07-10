@@ -1,7 +1,7 @@
-import React from "react";
-import Link from "next/link";
+import React from 'react'
+import Link from 'next/link'
 
-export default props =>
+export default (props) => (
   <span>
     <Link href={props.href}>
       <a>
@@ -15,4 +15,5 @@ export default props =>
         right: -2px;
       }
     `}</style>
-  </span>;
+  </span>
+)

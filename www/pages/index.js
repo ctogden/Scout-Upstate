@@ -5,7 +5,7 @@ export default class extends React.Component {
   static async getInitialProps({ res }) {
     if (res) {
       res.writeHead(302, {
-        Location: '/guide'
+        Location: '/guide',
       })
       res.end()
     } else {

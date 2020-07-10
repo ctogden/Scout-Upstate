@@ -1,217 +1,217 @@
-import React from "react";
-import Header from "../../../components/header";
-import Footer from "../../../components/footer";
-import Link from "next/link";
-import ReactMarkdown from "react-markdown";
-import ExternalLink from "../../../components/external-link";
-import Router from "next/router";
-import "isomorphic-fetch";
+import React from 'react'
+import Header from '../../../components/header'
+import Footer from '../../../components/footer'
+import Link from 'next/link'
+import ReactMarkdown from 'react-markdown'
+import ExternalLink from '../../../components/external-link'
+import Router from 'next/router'
+import 'isomorphic-fetch'
 
-var _ = require("lodash/core");
-var GeoJSON = require("geojson");
-var map;
+var _ = require('lodash/core')
+var GeoJSON = require('geojson')
+var map
 
 export default class extends React.Component {
   constructor() {
-    super();
+    super()
 
-    this.handleItemClick = this.handleItemClick.bind(this);
-    this.createPopUp = this.createPopUp.bind(this);
+    this.handleItemClick = this.handleItemClick.bind(this)
+    this.createPopUp = this.createPopUp.bind(this)
   }
 
   static async getInitialProps({ query: { slug } }) {
-    const res = await fetch("https://scoutupstate.com/api/places");
+    const res = await fetch('https://scoutupstate.com/api/places')
     return {
       data: _.map(
         _.filter(
-          _.map(await res.json(), row => row.fields),
-          row =>
-            typeof row.Lat !== "undefined" && typeof row.Lon !== "undefined"
+          _.map(await res.json(), (row) => row.fields),
+          (row) =>
+            typeof row.Lat !== 'undefined' && typeof row.Lon !== 'undefined'
         ),
-        function(row) {
-          row.Lat = parseFloat(row.Lat);
-          row.Lon = parseFloat(row.Lon);
-          return row;
+        function (row) {
+          row.Lat = parseFloat(row.Lat)
+          row.Lon = parseFloat(row.Lon)
+          return row
         }
-      )
-    };
+      ),
+    }
   }
 
   flyToPlace(currentFeature) {
     map.flyTo({
       center: currentFeature.geometry.coordinates,
-      zoom: 12
-    });
+      zoom: 12,
+    })
   }
 
   createPopUp(currentFeature) {
-    var popUps = document.getElementsByClassName("mapboxgl-popup");
+    var popUps = document.getElementsByClassName('mapboxgl-popup')
     // Check if there is already a popup on the map and if so, remove it
-    if (popUps[0]) popUps[0].remove();
+    if (popUps[0]) popUps[0].remove()
 
-    var div = window.document.createElement("div");
-    var attraction = window.document.createElement("h2");
-    attraction.innerHTML = currentFeature.properties.Name;
+    var div = window.document.createElement('div')
+    var attraction = window.document.createElement('h2')
+    attraction.innerHTML = currentFeature.properties.Name
     attraction.setAttribute(
-      "style",
-      "cursor: grab; cursor:-moz-grab; cursor:-webkit-grab;"
-    );
-    attraction.style.color = "#00853e";
-    attraction.style.fontSize = "1.4em";
+      'style',
+      'cursor: grab; cursor:-moz-grab; cursor:-webkit-grab;'
+    )
+    attraction.style.color = '#00853e'
+    attraction.style.fontSize = '1.4em'
     attraction.addEventListener(
-      "click",
-      () => Router.push("/guide/attraction/" + currentFeature.properties.Slug),
+      'click',
+      () => Router.push('/guide/attraction/' + currentFeature.properties.Slug),
       false
-    );
-    var address = window.document.createElement("h4");
-    address.innerHTML = currentFeature.properties.Address;
-    div.appendChild(attraction);
-    div.appendChild(address);
+    )
+    var address = window.document.createElement('h4')
+    address.innerHTML = currentFeature.properties.Address
+    div.appendChild(attraction)
+    div.appendChild(address)
 
     var popup = new mapboxgl.Popup({ closeOnClick: false, offset: 35 })
       .setLngLat(currentFeature.geometry.coordinates)
       .setDOMContent(div)
-      .addTo(map);
+      .addTo(map)
 
-    return popup;
+    return popup
   }
 
   handleItemClick(currentFeature) {
     // 1. Zoom to corresponding location on map
-    this.flyToPlace(currentFeature);
+    this.flyToPlace(currentFeature)
     // 2. Close all other popups and display popup for clicked place
-    this.createPopUp(currentFeature);
+    this.createPopUp(currentFeature)
     // 3. Highlight listing in sidebar (and remove highlight for all other listings)
-    this.setActiveItem(currentFeature);
+    this.setActiveItem(currentFeature)
   }
 
   setActiveItem(currentFeature) {
-    var features = this.state.attractions.features.map(function(attraction) {
+    var features = this.state.attractions.features.map(function (attraction) {
       if (attraction.properties.Slug === currentFeature.properties.Slug) {
-        attraction.properties.Active = true;
+        attraction.properties.Active = true
       } else {
         // set the rest to false so we only have at most one active item
-        attraction.properties.Active = false;
+        attraction.properties.Active = false
       }
-      return attraction;
-    });
+      return attraction
+    })
 
-    this.setState({ attractions: { features: features } });
+    this.setState({ attractions: { features: features } })
   }
 
   async componentDidMount() {
     var attractions = GeoJSON.parse(
-      Object.keys(this.props.data).map(key => this.props.data[key]),
-      { Point: ["Lat", "Lon"] }
-    );
-    this.setState({ attractions: attractions });
+      Object.keys(this.props.data).map((key) => this.props.data[key]),
+      { Point: ['Lat', 'Lon'] }
+    )
+    this.setState({ attractions: attractions })
 
     mapboxgl.accessToken =
-      "pk.eyJ1IjoiY3RvZ2RlbiIsImEiOiJjamMxMjA0ZXQwMWozMzNvOTd4a3B0aTZjIn0.KzJ79r9nBEqSGYUGsMQttg";
+      'pk.eyJ1IjoiY3RvZ2RlbiIsImEiOiJjamMxMjA0ZXQwMWozMzNvOTd4a3B0aTZjIn0.KzJ79r9nBEqSGYUGsMQttg'
 
     // This adds the map to your page
     map = new mapboxgl.Map({
       // container id specified in the HTML
-      container: "map",
+      container: 'map',
       // style URL
-      style: "mapbox://styles/ctogden/cje0e2dgqafeu2slcsp1cqg6b",
+      style: 'mapbox://styles/ctogden/cje0e2dgqafeu2slcsp1cqg6b',
       // initial position in [lon, lat] format
       center: [-74.526341, 42.155902],
       // initial zoom
       zoom: 8,
-      minZoom: 6
-    });
+      minZoom: 6,
+    })
 
-    map.on("load", function(e) {
+    map.on('load', function (e) {
       // Add the data to your map as a layer
-      map.addSource("places", {
-        type: "geojson",
-        data: attractions
-      });
+      map.addSource('places', {
+        type: 'geojson',
+        data: attractions,
+      })
 
       // pretty much the same as createPopUp above, but within scope and doesn't add to map directly
-      var createPopUp = function(currentFeature) {
-        var div = window.document.createElement("div");
-        var attraction = window.document.createElement("h2");
-        attraction.innerHTML = currentFeature.properties.Name;
+      var createPopUp = function (currentFeature) {
+        var div = window.document.createElement('div')
+        var attraction = window.document.createElement('h2')
+        attraction.innerHTML = currentFeature.properties.Name
         attraction.setAttribute(
-          "style",
-          "cursor: grab; cursor:-moz-grab; cursor:-webkit-grab;"
-        );
-        attraction.style.color = "#00853e";
-        attraction.style.fontSize = "1.4em";
+          'style',
+          'cursor: grab; cursor:-moz-grab; cursor:-webkit-grab;'
+        )
+        attraction.style.color = '#00853e'
+        attraction.style.fontSize = '1.4em'
         attraction.addEventListener(
-          "click",
+          'click',
           () =>
-            Router.push("/guide/attraction/" + currentFeature.properties.Slug),
+            Router.push('/guide/attraction/' + currentFeature.properties.Slug),
           false
-        );
-        var address = window.document.createElement("h4");
-        address.innerHTML = currentFeature.properties.Address;
-        div.appendChild(attraction);
-        div.appendChild(address);
+        )
+        var address = window.document.createElement('h4')
+        address.innerHTML = currentFeature.properties.Address
+        div.appendChild(attraction)
+        div.appendChild(address)
 
         var popup = new mapboxgl.Popup({ closeOnClick: false, offset: 35 })
           .setLngLat(currentFeature.geometry.coordinates)
-          .setDOMContent(div);
+          .setDOMContent(div)
 
-        return popup;
-      };
+        return popup
+      }
 
-      attractions.features.forEach(feature => {
+      attractions.features.forEach((feature) => {
         // Create a div element for the marker
-        var el = document.createElement("div");
+        var el = document.createElement('div')
         // Add a class called 'marker' to each div
-        el.className = "marker";
+        el.className = 'marker'
         // create popup to attach to marker
-        var popup = createPopUp(feature);
+        var popup = createPopUp(feature)
         // By default the image for your custom marker will be anchored
         // by its center. Adjust the position accordingly
         // Create the custom markers, set their position, and add to map
         new mapboxgl.Marker(el, { offset: [0, -12.5] })
           .setLngLat(feature.geometry.coordinates)
           .setPopup(popup)
-          .addTo(map);
+          .addTo(map)
 
         el.addEventListener(
-          "click",
-          function() {
+          'click',
+          function () {
             // Check if there is already a popup on the map and if so, remove it
-            var popUps = document.getElementsByClassName("mapboxgl-popup");
-            if (popUps[0]) popUps[0].remove();
+            var popUps = document.getElementsByClassName('mapboxgl-popup')
+            if (popUps[0]) popUps[0].remove()
           },
           false
-        );
-      });
-    });
+        )
+      })
+    })
   }
 
   render() {
     var attractionsList =
       this.state !== null && this.state.attractions !== null ? (
-        this.state.attractions.features.map(attraction => (
+        this.state.attractions.features.map((attraction) => (
           <div
             className="item"
             key={attraction.properties.Slug}
-            onClick={e => this.handleItemClick(attraction, e)}
+            onClick={(e) => this.handleItemClick(attraction, e)}
           >
             <h2>{attraction.properties.Name}</h2>
             <h3>{attraction.properties.Address}</h3>
             <style jsx>{`
               .item {
                 background-color: ${attraction.properties.Active
-                  ? "#f8f8f8"
-                  : "inherit"};
+                  ? '#f8f8f8'
+                  : 'inherit'};
               }
               .item h2 {
-                color: ${attraction.properties.Active ? "#8cc63f" : "#00853e"};
+                color: ${attraction.properties.Active ? '#8cc63f' : '#00853e'};
               }
             `}</style>
           </div>
         ))
       ) : (
         <span className="loading-indicator">Loading attractions...</span>
-      );
+      )
     return (
       <div className="wrapper">
         <Header title="Map">Map</Header>
@@ -325,6 +325,6 @@ export default class extends React.Component {
           }
         `}</style>
       </div>
-    );
+    )
   }
 }

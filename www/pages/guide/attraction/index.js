@@ -1,66 +1,65 @@
-import React from "react";
-import Header from "../../../components/header";
-import Footer from "../../../components/footer";
-import Link from "next/link";
-import ReactMarkdown from "react-markdown";
-import ExternalLink from "../../../components/external-link";
-import Error from "next/error";
-import "isomorphic-fetch";
+import React from 'react'
+import Header from '../../../components/header'
+import Footer from '../../../components/footer'
+import Link from 'next/link'
+import ReactMarkdown from 'react-markdown'
+import ExternalLink from '../../../components/external-link'
+import Error from 'next/error'
+import 'isomorphic-fetch'
 
-var Carousel = require("react-responsive-carousel").Carousel;
-var _ = require("lodash/core");
-
+var Carousel = require('react-responsive-carousel').Carousel
+var _ = require('lodash/core')
 
 export default class extends React.Component {
   constructor() {
-    super();
-    this.state = { showMap: false };
+    super()
+    this.state = { showMap: false }
   }
 
   static async getInitialProps({ query: { slug } }) {
-    const res = await fetch("https://scoutupstate.com/api/places?slug=" + slug);
+    const res = await fetch('https://scoutupstate.com/api/places?slug=' + slug)
 
-    if (typeof slug === "undefined") {
-      res.statusCode = 404;
-      return {};
+    if (typeof slug === 'undefined') {
+      res.statusCode = 404
+      return {}
     }
 
-    const data = await res.json();
+    const data = await res.json()
     if (data.length === 0) {
-      res.statusCode = 404;
-      return {};
+      res.statusCode = 404
+      return {}
     }
 
-    return data.fields;
+    return data.fields
   }
 
   componentDidMount() {
     if (this.props.Lat && this.props.Lon) {
       mapboxgl.accessToken =
-        "pk.eyJ1IjoiY3RvZ2RlbiIsImEiOiJjamMxMjA0ZXQwMWozMzNvOTd4a3B0aTZjIn0.KzJ79r9nBEqSGYUGsMQttg";
+        'pk.eyJ1IjoiY3RvZ2RlbiIsImEiOiJjamMxMjA0ZXQwMWozMzNvOTd4a3B0aTZjIn0.KzJ79r9nBEqSGYUGsMQttg'
 
       let map = new mapboxgl.Map({
         // container id specified in the HTML
-        container: "map",
+        container: 'map',
         // style URL
-        style: "mapbox://styles/ctogden/cje0e2dgqafeu2slcsp1cqg6b",
+        style: 'mapbox://styles/ctogden/cje0e2dgqafeu2slcsp1cqg6b',
         // initial position in [lon, lat] format
         center: [this.props.Lon, this.props.Lat],
         // initial zoom
         zoom: 12,
-        minZoom: 6
-      });
+        minZoom: 6,
+      })
 
-      var el = document.createElement("div");
-      el.className = "marker";
+      var el = document.createElement('div')
+      el.className = 'marker'
       new mapboxgl.Marker(el, { offset: [0, -12.5] })
         .setLngLat([this.props.Lon, this.props.Lat])
-        .addTo(map);
+        .addTo(map)
     }
   }
 
   render() {
-    if (!this.props.Name) return <Error statusCode={404} />;
+    if (!this.props.Name) return <Error statusCode={404} />
     return (
       <div className="wrapper">
         <Header title={this.props.Name}>
@@ -70,12 +69,12 @@ export default class extends React.Component {
         <div className="content">
           <div className="basic-info">
             <span className="basic-info">
-              <Link href={"http://maps.google.com/?q=" + this.props.Address}>
+              <Link href={'http://maps.google.com/?q=' + this.props.Address}>
                 <a>{this.props.Address}</a>
               </Link>
             </span>
             <span className="basic-info">
-              <a href={"tel:" + this.props.Tel}>{this.props.Phone}</a>
+              <a href={'tel:' + this.props.Tel}>{this.props.Phone}</a>
             </span>
           </div>
           <div className="description">
@@ -85,7 +84,7 @@ export default class extends React.Component {
           <div className="photo-box">
             {_.isUndefined(this.props.Photos) ? (
               <div className="image-placeholder">
-                No photos yet. We’ll try to add some soon! You can also{" "}
+                No photos yet. We’ll try to add some soon! You can also{' '}
                 <a href="mailto:hello@scoutupstate.com">email</a> us your
                 submissions.
               </div>
@@ -97,14 +96,14 @@ export default class extends React.Component {
                 dynamicHeight={true}
                 autoPlay
               >
-                {this.props.Photos.map(photo => (
+                {this.props.Photos.map((photo) => (
                   <div key={photo.id}>
                     <img src={photo.url} />
                   </div>
                 ))}
               </Carousel>
             )}
-          </div>{" "}
+          </div>{' '}
           {this.props.Lat && this.props.Lon ? <div id="map" /> : null}
         </div>
         <Footer />
@@ -183,6 +182,6 @@ export default class extends React.Component {
           }
         `}</style>
       </div>
-    );
+    )
   }
 }

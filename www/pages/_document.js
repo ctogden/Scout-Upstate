@@ -1,16 +1,16 @@
 // _document is only rendered on the server side and not on the client side
 // Event handlers like onClick can't be added to this file
 import Document, { Html, Head, Main, NextScript } from 'next/document'
-import * as Sentry from '@sentry/browser';
+import * as Sentry from '@sentry/browser'
 import { GA_TRACKING_ID } from '../lib/gtag'
 
 process.on('unhandledRejection', (err) => {
-    Sentry.captureException(err);
-});
+  Sentry.captureException(err)
+})
 
 process.on('uncaughtException', (err) => {
-    Sentry.captureException(err);
-});
+  Sentry.captureException(err)
+})
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
@@ -34,7 +34,7 @@ class MyDocument extends Document {
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', '${GA_TRACKING_ID}');
-          `
+          `,
             }}
           />
           <style>{`body { margin: 0 } /* custom! */`}</style>

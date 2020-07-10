@@ -1,18 +1,18 @@
-import React from "react";
-import Link from "next/link";
-import Head from "next/head";
+import React from 'react'
+import Link from 'next/link'
+import Head from 'next/head'
 
 class Header extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.displayMenu = this.displayMenu.bind(this);
+    this.displayMenu = this.displayMenu.bind(this)
   }
 
   displayMenu() {
-    var navMenu = document.getElementById("nav-menu");
-    navMenu.style.display = window.getComputedStyle(navMenu).display;
-    navMenu.style.display = navMenu.style.display === "none" ? "block" : "none";
+    var navMenu = document.getElementById('nav-menu')
+    navMenu.style.display = window.getComputedStyle(navMenu).display
+    navMenu.style.display = navMenu.style.display === 'none' ? 'block' : 'none'
   }
 
   render() {
@@ -110,11 +110,11 @@ class Header extends React.Component {
         </div>
         <style jsx global>{`
           * {
-            font-family: "Roboto";
+            font-family: 'Roboto';
             font-size: 1em;
           }
           .clearfix:after {
-            content: "";
+            content: '';
             display: block;
             clear: both;
           }
@@ -188,13 +188,13 @@ class Header extends React.Component {
             color: #000000;
           }
           .site-name {
-            font-family: "Lato", sans-serif;
+            font-family: 'Lato', sans-serif;
             font-size: 3em;
           }
           .page-name {
             float: right;
             margin-top: -10px;
-            font-family: "Roboto", sans-serif;
+            font-family: 'Roboto', sans-serif;
             font-size: 1.5em;
             color: #4f4f4f;
           }
@@ -227,8 +227,8 @@ class Header extends React.Component {
           }
         `}</style>
       </header>
-    );
+    )
   }
 }
 
-export default Header;
+export default Header

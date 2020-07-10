@@ -1,6 +1,6 @@
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import Link from "next/link";
+import Header from '../../components/header'
+import Footer from '../../components/footer'
+import Link from 'next/link'
 
 export default () => (
   <div className="wrapper">
@@ -29,7 +29,7 @@ export default () => (
           <div className="snippet-label">newsletter</div>
         </div>
         <div className="snippet-body">
-          Sign up for our weekly newsletter,{" "}
+          Sign up for our weekly newsletter,{' '}
           <a href="http://eepurl.com/donZ2f">The Weekender</a>.
         </div>
       </div>
@@ -38,8 +38,8 @@ export default () => (
           <div className="snippet-label">contributors</div>
         </div>
         <div className="snippet-body">
-          Scout Upstate was created by{" "}
-          <a href="http://ctogden.com">Chris Ogden</a> (code & content) and{" "}
+          Scout Upstate was created by{' '}
+          <a href="http://ctogden.com">Chris Ogden</a> (code & content) and{' '}
           <a href="https://theokeden.com/">Elisabeth Ogden</a> (guide content).
         </div>
       </div>
@@ -48,9 +48,9 @@ export default () => (
           <div className="snippet-label">contact</div>
         </div>
         <div className="snippet-body">
-          Send us an <a href="mailto:ogdenchris+scoutupstate@gmail.com">email</a> or reach
-          out on <a href="https://twitter.com/scout_upstate">Twitter</a>
-          .
+          Send us an{' '}
+          <a href="mailto:ogdenchris+scoutupstate@gmail.com">email</a> or reach
+          out on <a href="https://twitter.com/scout_upstate">Twitter</a>.
         </div>
       </div>
     </div>
@@ -93,4 +93,4 @@ export default () => (
       }
     `}</style>
   </div>
-);
+)

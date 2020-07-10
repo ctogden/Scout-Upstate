@@ -1,18 +1,18 @@
-import React from "react";
-import Header from "../../components/header";
-import Footer from "../../components/footer";
-import ReactMarkdown from "react-markdown";
-import Link from "next/link";
-import "isomorphic-fetch";
+import React from 'react'
+import Header from '../../components/header'
+import Footer from '../../components/footer'
+import ReactMarkdown from 'react-markdown'
+import Link from 'next/link'
+import 'isomorphic-fetch'
 
-var _ = require("lodash");
+var _ = require('lodash')
 
 export default class extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      emailValue: ""
-    };
+      emailValue: '',
+    }
   }
   render() {
     return (
@@ -49,8 +49,8 @@ export default class extends React.Component {
                   type="email"
                   className="email-input"
                   value={this.state.emailValue}
-                  onChange={e => {
-                    this.setState({ emailValue: e.target.value });
+                  onChange={(e) => {
+                    this.setState({ emailValue: e.target.value })
                   }}
                   autoCapitalize="off"
                   placeholder="Enter your email address"
@@ -295,6 +295,6 @@ export default class extends React.Component {
           }
         `}</style>
       </div>
-    );
+    )
   }
 }

@@ -14,3 +14,5 @@ api/target/
 **/*.rs.bk
 .now
 blog/public/
+www/out/*
+.vercel
