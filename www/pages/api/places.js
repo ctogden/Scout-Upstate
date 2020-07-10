@@ -60,7 +60,7 @@ async function handler(req, res) {
   if ('slug' in req.query) {
     results = results.filter(
       (result) => result.fields.Slug === req.query['slug']
-    )
+    )[0]
   }
   console.log(req.query)
 
