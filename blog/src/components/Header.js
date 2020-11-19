@@ -31,11 +31,6 @@ class Header extends React.Component {
               </a>
             </li>
             <li>
-              <a className="nav-link" href="/calendar">
-                Calendar
-              </a>
-            </li>
-            <li>
               <Link className="nav-link" to="/">
                 Journal
               </Link>

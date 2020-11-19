@@ -84,11 +84,6 @@ class Header extends React.Component {
               </Link>
             </li>
             <li>
-              <Link href="/calendar">
-                <a>Calendar</a>
-              </Link>
-            </li>
-            <li>
               <a href="/journal/">Journal</a>
             </li>
 
