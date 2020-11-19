@@ -1,6 +1,6 @@
 import Header from '../../components/header'
 import Footer from '../../components/footer'
-import Link from 'next/link'
+import React from 'react'
 
 export default class extends React.Component {
   render() {
