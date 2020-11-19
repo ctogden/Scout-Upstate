@@ -5,7 +5,6 @@ import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import ExternalLink from '../../../components/external-link'
 import Router from 'next/router'
-import 'isomorphic-fetch'
 
 var _ = require('lodash/core')
 var GeoJSON = require('geojson')

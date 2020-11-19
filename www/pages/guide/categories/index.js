@@ -3,7 +3,6 @@ import Header from '../../../components/header'
 import Footer from '../../../components/footer'
 import ReactMarkdown from 'react-markdown'
 import Link from 'next/link'
-import 'isomorphic-fetch'
 
 var _ = require('lodash')
 

@@ -5,7 +5,6 @@ import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
 import ExternalLink from '../../../components/external-link'
 import Error from 'next/error'
-import 'isomorphic-fetch'
 
 var Carousel = require('react-responsive-carousel').Carousel
 var _ = require('lodash/core')
