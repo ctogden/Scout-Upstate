@@ -44,8 +44,9 @@ module.exports = {
         trackingId: "UA-108085598-1",
       },
     },
-    `gatsby-plugin-feed`,
+    // `gatsby-plugin-feed`,  // TODO: set up RSS feed
     `gatsby-plugin-offline`,
-    `gatsby-plugin-react-helmet`
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-sharp`,
   ],
 }
