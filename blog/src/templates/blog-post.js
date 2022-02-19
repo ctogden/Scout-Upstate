@@ -13,11 +13,11 @@ class BlogPostTemplate extends React.Component {
     return (
       <Layout>
         <div className="content">
+          <p className="post-date">
+            {post.frontmatter.date}
+          </p>
           <article>
             <Helmet title={`${siteTitle} | ${post.frontmatter.title}`} />
-            <p className="post-date">
-              {post.frontmatter.date}
-            </p>
             <h1>{post.frontmatter.title}</h1>
             <div className="post-content" dangerouslySetInnerHTML={{ __html: post.html }} />
           </article>
@@ -25,8 +25,6 @@ class BlogPostTemplate extends React.Component {
             article {
               margin: 0 auto 40px auto;
               width: 540px;
-            }
-            .post-content {
               font-size: 18px;
             }
             p.post-date {
@@ -36,7 +34,7 @@ class BlogPostTemplate extends React.Component {
             article h1 {
               font-size: 1.8em;
             }
-            @media (max-width: 620px), (min-resolution: 150dpi) {
+            @media (max-width: 620px) and (min-resolution: 150dpi) {
               article {
                 width: 100%;
               }
