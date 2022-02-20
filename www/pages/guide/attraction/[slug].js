@@ -45,7 +45,10 @@ const place = (props) => {
       <div className="wrapper">
         <Header title={props.Name}>
           {props.Name}
-          <ExternalLink href={props.Website} />
+          { props.Website ? 
+            <ExternalLink href={props.Website} /> 
+            : null 
+          }
         </Header>
         <div className="content">
           <div className="basic-info">
@@ -170,9 +173,11 @@ const place = (props) => {
 export async function getStaticPaths() {
   let response = await fetch('https://scout-upstate-guide.vercel.app/api/places')
   let places = await response.json();
-  let slugs = places.map(place => 
-     place.fields.Slug
-  ).filter(slug => slug != undefined)
+  let slugs = places
+    .filter(place => place.fields.Slug != undefined)
+    .map(place => 
+      place.fields.Slug
+    )
   return {
     paths: slugs.map(slug => ({
       params: {
@@ -186,8 +191,7 @@ export async function getStaticPaths() {
 export async function getStaticProps({params: { slug }}) {
   let response = await fetch('https://scout-upstate-guide.vercel.app/api/places?slug=' + slug)
   let place = await response.json();
-  place = place['fields'];
-  console.log(place);
+
   return {
     props: place,
   }
