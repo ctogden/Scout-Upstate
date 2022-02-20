@@ -193,7 +193,7 @@ export async function getStaticProps({params: { slug }}) {
   let place = await response.json();
 
   return {
-    props: place,
+    props: place.fields,
   }
 }
 
