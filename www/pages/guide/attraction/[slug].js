@@ -168,7 +168,7 @@ const place = (props) => {
 }
 
 export async function getStaticPaths() {
-  let response = await fetch('https://.../api/places')
+  let response = await fetch('https://scoutupstate.com/api/places')
   let places = await response.json();
   let slugs = places.map(place => 
      place.fields.Slug
@@ -184,7 +184,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params: { slug }}) {
-  let response = await fetch('https://.../api/places?slug=' + slug)
+  let response = await fetch('https://scoutupstate.com/api/places?slug=' + slug)
   let place = await response.json();
   place = place['fields'];
   console.log(place);
