@@ -167,25 +167,8 @@ const place = (props) => {
   }
 }
 
-// static async getInitialProps({ query: { slug } }) {
-//   const res = await fetch('https://scoutupstate.com/api/places?slug=' + slug)
-
-//   if (typeof slug === 'undefined') {
-//     res.statusCode = 404
-//     return {}
-//   }
-
-//   const data = await res.json()
-//   if (data.length === 0) {
-//     res.statusCode = 404
-//     return {}
-//   }
-
-//   return data.fields
-// }
-
 export async function getStaticPaths() {
-  let response = await fetch('https://scoutupstate.com/api/places')
+  let response = await fetch('https://.../api/places')
   let places = await response.json();
   let slugs = places.map(place => 
      place.fields.Slug
@@ -201,7 +184,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params: { slug }}) {
-  let response = await fetch('https://scoutupstate.com/api/places?slug=' + slug)
+  let response = await fetch('https://.../api/places?slug=' + slug)
   let place = await response.json();
   place = place['fields'];
   console.log(place);
