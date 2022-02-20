@@ -8,7 +8,7 @@ var _ = require('lodash')
 
 export default class extends React.Component {
   static async getInitialProps() {
-    const res = await fetch('https://scoutupstate.com/api/places')
+    const res = await fetch('https://scout-upstate-guide.vercel.app/api/places')
     const data = await res.json()
     const rows = _.filter(data, function (e) {
       return (

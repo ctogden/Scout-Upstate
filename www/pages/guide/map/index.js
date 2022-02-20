@@ -19,7 +19,7 @@ export default class extends React.Component {
   }
 
   static async getInitialProps({ query: { slug } }) {
-    const res = await fetch('https://scoutupstate.com/api/places')
+    const res = await fetch('https://scout-upstate-guide.vercel.app/api/places')
     return {
       data: _.map(
         _.filter(
