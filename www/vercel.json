@@ -1,0 +1,6 @@
+{
+    "rewrites": [
+      { "source": "/journal", "destination": "https://scout-upstate-journal.vercel.app/" },
+      { "source": "/journal/:match*", "destination": "https://scout-upstate-journal.vercel.app/:match*" }
+    ]
+}

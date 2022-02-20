@@ -5,7 +5,6 @@ module.exports = {
     description: 'Your guide to Upstate New York.',
     siteUrl: 'https://scoutupstate.com/journal',
   },
-  pathPrefix: `/journal`,
   plugins: [
     `gatsby-plugin-styled-jsx`,
     {
