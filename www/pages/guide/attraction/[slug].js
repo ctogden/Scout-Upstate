@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Header from '../../../components/header'
 import Footer from '../../../components/footer'
 import Link from 'next/link'
@@ -9,31 +9,11 @@ import Error from 'next/error'
 var Carousel = require('react-responsive-carousel').Carousel
 var _ = require('lodash/core')
 
-export default class extends React.Component {
-  constructor() {
-    super()
-    this.state = { showMap: false }
-  }
+const place = (props) => {
+  //const [showMap, setShowMap] = useState(false);
 
-  static async getInitialProps({ query: { slug } }) {
-    const res = await fetch('https://scoutupstate.com/api/places?slug=' + slug)
-
-    if (typeof slug === 'undefined') {
-      res.statusCode = 404
-      return {}
-    }
-
-    const data = await res.json()
-    if (data.length === 0) {
-      res.statusCode = 404
-      return {}
-    }
-
-    return data.fields
-  }
-
-  componentDidMount() {
-    if (this.props.Lat && this.props.Lon) {
+  useEffect(() => {
+    if (props.Lat && props.Lon) {
       mapboxgl.accessToken =
         'pk.eyJ1IjoiY3RvZ2RlbiIsImEiOiJjamMxMjA0ZXQwMWozMzNvOTd4a3B0aTZjIn0.KzJ79r9nBEqSGYUGsMQttg'
 
@@ -43,7 +23,7 @@ export default class extends React.Component {
         // style URL
         style: 'mapbox://styles/ctogden/cje0e2dgqafeu2slcsp1cqg6b',
         // initial position in [lon, lat] format
-        center: [this.props.Lon, this.props.Lat],
+        center: [props.Lon, props.Lat],
         // initial zoom
         zoom: 12,
         minZoom: 6,
@@ -52,36 +32,38 @@ export default class extends React.Component {
       var el = document.createElement('div')
       el.className = 'marker'
       new mapboxgl.Marker(el, { offset: [0, -12.5] })
-        .setLngLat([this.props.Lon, this.props.Lat])
+        .setLngLat([props.Lon, props.Lat])
         .addTo(map)
     }
-  }
+  }, [])
 
-  render() {
-    if (!this.props.Name) return <Error statusCode={404} />
+  if (!props.Name) {
+    return <Error statusCode={404} />
+  }
+  else {
     return (
       <div className="wrapper">
-        <Header title={this.props.Name}>
-          {this.props.Name}
-          <ExternalLink href={this.props.Website} />
+        <Header title={props.Name}>
+          {props.Name}
+          <ExternalLink href={props.Website} />
         </Header>
         <div className="content">
           <div className="basic-info">
             <span className="basic-info">
-              <Link href={'http://maps.google.com/?q=' + this.props.Address}>
-                <a>{this.props.Address}</a>
+              <Link href={'http://maps.google.com/?q=' + props.Address}>
+                <a>{props.Address}</a>
               </Link>
             </span>
             <span className="basic-info">
-              <a href={'tel:' + this.props.Tel}>{this.props.Phone}</a>
+              <a href={'tel:' + props.Tel}>{props.Phone}</a>
             </span>
           </div>
           <div className="description">
-            <ReactMarkdown source={this.props.Description} />
-            <ReactMarkdown source={this.props.Hours} />
+            <ReactMarkdown source={props.Description} />
+            <ReactMarkdown source={props.Hours} />
           </div>
           <div className="photo-box">
-            {_.isUndefined(this.props.Photos) ? (
+            {_.isUndefined(props.Photos) ? (
               <div className="image-placeholder">
                 No photos yet. We’ll try to add some soon! You can also{' '}
                 <a href="mailto:hello@scoutupstate.com">email</a> us your
@@ -95,7 +77,7 @@ export default class extends React.Component {
                 dynamicHeight={true}
                 autoPlay
               >
-                {this.props.Photos.map((photo) => (
+                {props.Photos.map((photo) => (
                   <div key={photo.id}>
                     <img src={photo.url} />
                   </div>
@@ -103,7 +85,7 @@ export default class extends React.Component {
               </Carousel>
             )}
           </div>{' '}
-          {this.props.Lat && this.props.Lon ? <div id="map" /> : null}
+          {props.Lat && props.Lon ? <div id="map" /> : null}
         </div>
         <Footer />
         <style jsx>{`
@@ -184,3 +166,48 @@ export default class extends React.Component {
     )
   }
 }
+
+// static async getInitialProps({ query: { slug } }) {
+//   const res = await fetch('https://scoutupstate.com/api/places?slug=' + slug)
+
+//   if (typeof slug === 'undefined') {
+//     res.statusCode = 404
+//     return {}
+//   }
+
+//   const data = await res.json()
+//   if (data.length === 0) {
+//     res.statusCode = 404
+//     return {}
+//   }
+
+//   return data.fields
+// }
+
+export async function getStaticPaths() {
+  let response = await fetch('https://scoutupstate.com/api/places')
+  let places = await response.json();
+  let slugs = places.map(place => 
+     place.fields.Slug
+  ).filter(slug => slug != undefined)
+  return {
+    paths: slugs.map(slug => ({
+      params: {
+        slug: slug
+      }
+    })),
+    fallback: true
+  };
+}
+
+export async function getStaticProps({params: { slug }}) {
+  let response = await fetch('https://scoutupstate.com/api/places?slug=' + slug)
+  let place = await response.json();
+  place = place['fields'];
+  console.log(place);
+  return {
+    props: place,
+  }
+}
+
+export default place;

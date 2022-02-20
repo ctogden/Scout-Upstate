@@ -18,7 +18,6 @@
   },
   "dependencies": {
     "@sentry/browser": "^5.27.4",
-    "@zeit/next-source-maps": "0.0.4-canary.1",
     "connect": "^3.7.0",
     "connect-slashes": "^1.4.0",
     "cors": "^2.8.5",
