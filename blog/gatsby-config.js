@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: `/journal`,
   siteMetadata: {
     title: 'Scout Upstate - Journal',
     author: 'Chris Ogden',

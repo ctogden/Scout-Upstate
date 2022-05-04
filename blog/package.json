@@ -4,25 +4,25 @@
   "version": "1.0.0",
   "author": "Chris Ogden <ogdenchris@gmail.com>",
   "dependencies": {
-    "gatsby": "^4.7.2",
-    "gatsby-plugin-feed": "^4.7.0",
-    "gatsby-plugin-google-analytics": "^4.7.0",
-    "gatsby-plugin-offline": "^5.7.0",
-    "gatsby-plugin-react-helmet": "^5.7.0",
-    "gatsby-plugin-styled-jsx": "^5.7.0",
-    "gatsby-remark-copy-linked-files": "^5.7.0",
-    "gatsby-remark-images": "^6.7.0",
-    "gatsby-remark-prismjs": "^6.7.0",
-    "gatsby-remark-responsive-iframe": "^5.7.0",
-    "gatsby-remark-smartypants": "^5.7.0",
-    "gatsby-source-filesystem": "^4.7.0",
-    "gatsby-transformer-remark": "^5.7.0",
+    "gatsby": "^4.13",
+    "gatsby-plugin-feed": "^4.13.0",
+    "gatsby-plugin-google-analytics": "^4.13.0",
+    "gatsby-plugin-offline": "^5.13.0",
+    "gatsby-plugin-react-helmet": "^5.13.0",
+    "gatsby-plugin-styled-jsx": "^5.13.0",
+    "gatsby-remark-copy-linked-files": "^5.13.0",
+    "gatsby-remark-images": "^6.13.0",
+    "gatsby-remark-prismjs": "^6.13.0",
+    "gatsby-remark-responsive-iframe": "^5.13.0",
+    "gatsby-remark-smartypants": "^5.13.0",
+    "gatsby-source-filesystem": "^4.13.0",
+    "gatsby-transformer-remark": "^5.13.0",
     "react": "^17.0.0",
     "react-dom": "^17.0.0",
-    "styled-jsx": "^3.4.7"
+    "styled-jsx": "^3.0.2"
   },
   "devDependencies": {
-    "prettier": "^2.5.1"
+    "prettier": "^2.6.2"
   },
   "scripts": {
     "dev": "gatsby develop",
