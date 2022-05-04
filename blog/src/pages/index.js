@@ -58,6 +58,7 @@ class BlogIndex extends React.Component {
             }
             .column {
               width: 720px;
+              max-width: 100%;
               margin: 0 auto;
             }
             @media (max-width: 620px), (min-resolution: 150dpi) {
